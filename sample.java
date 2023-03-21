@@ -7,5 +7,9 @@ public class sample {
     int A;
     A = scan.nextInt();
 
+    if (A) {
+      System.out.println("5입니다.");
+    }
+
   }
 }
