@@ -17,6 +17,21 @@ typedef struct
   int num;
 } List;
 
+Node *reverse(List *head)
+{
+  Node *p, *q, *r;
+  p = head; // p는 역순으로 만들 리스트
+  q = NULL; // q는 역순으로 만들 노드
+  while (p != NULL)
+  {
+    r = q;
+    q = p;
+    p = p->link;
+    q->link = r;
+  }
+  return q; //5번이 끝난 후
+}
+
 Node *getNode()
 {
   Node *new = (Node *)malloc(sizeof(Node));

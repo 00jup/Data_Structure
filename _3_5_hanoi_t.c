@@ -3,7 +3,7 @@
 void hanoi_t(int n, char from, char tmp, char to)
 {
   if (n == 1)
-    printf("원판 1을 %c에서 %c로 옮긴다.\n", from, to);
+    printf("...........원판 1을 %c에서 %c로 옮긴다.\n", from, to);
   else
   {
     hanoi_t(n - 1, from, to, tmp);
@@ -14,5 +14,5 @@ void hanoi_t(int n, char from, char tmp, char to)
 
 main()
 {
-  hanoi_t(3 , 'A', 'B', 'C');
+  hanoi_t(3, 'A', 'B', 'C');
 }
