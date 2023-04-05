@@ -21,7 +21,7 @@ void search(DListNode *head, element data);
 void sort_dinsert(DListNode *phead);
 void display(DListNode *phead);
 void free_node(DListNode *phead);
-void removed(DListNode *phead, DListNode *removed);
+void removed(DListNode *phead, element data);
 
 void init(DListNode *phead)
 {
@@ -88,9 +88,26 @@ void free_node(DListNode *phead)
     p = p->rlink;
   }
 }
-void removed(DListNode *phead, DListNode *removed)
+void removed(DListNode *phead, element data)
 {
   /// 탐색 --> 발견하면 free;
+  DListNode *p;
+  for (p = phead->rlink; p != phead; p = p->rlink)
+  {
+    if (p->data.num == data.num)
+    {
+      if (removed == phead)
+        return;
+      else
+      {
+        p->rlink->llink = p->llink;
+        p->llink->rlink = p->rlink;
+        free(p);
+        // display(phead);
+        return;
+      }
+    }
+  }
   /// 아무것도 없으면 printf("아무것도 없습니다..")
 }
 
@@ -146,7 +163,6 @@ int main()
       tmp->data = dat;         // 새로운 노드의 데이터 필드에 입력 받은 dat구조체를 대입
       dinsert_node(head, tmp); // 노드 맨 앞에 삽입
       break;
-
     case 2: // 학생 번호 입력 받아 리스트에서 탐색 후 출력
       printf("검색할 학생 번호 : ");
       scanf("%d", &dat.num);
@@ -160,7 +176,9 @@ int main()
     case 4:
       delete_tmp = (DListNode *)malloc(sizeof(DListNode));
       printf("\n삭제할 인원 번호 입력\n");
-      scanf("%d", delete_tmp->data.num);
+      scanf("%d", &dat.num);
+      removed(head, dat);
+
     default:
       break;
     }
