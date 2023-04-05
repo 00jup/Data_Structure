@@ -103,7 +103,7 @@ void removed(DListNode *phead, element data)
         p->rlink->llink = p->llink;
         p->llink->rlink = p->rlink;
         free(p);
-        // display(phead);
+        display(phead);
         return;
       }
     }
@@ -178,6 +178,7 @@ int main()
       printf("\n삭제할 인원 번호 입력\n");
       scanf("%d", &dat.num);
       removed(head, dat);
+      break;
 
     default:
       break;
