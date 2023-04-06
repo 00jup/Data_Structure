@@ -39,10 +39,7 @@ void push(Stack *s, element item)
 element pop(Stack *s)
 {
   if (is_empty(s))
-  {
-    printf("-1\n");
-    exit(1);
-  }
+    return -1;
   else
   {
     Node *temp = s->top;
@@ -74,7 +71,7 @@ int size(Stack *s)
 {
 
   int size = 0;
-  for (Node *p = s->top; p != NULL; p = p->link)
+  for (Node *p = s->top; p != NULL; p = p->link) // 여기서 p->link랑 p != NULL 차이가 뭐지.
   {
     size++;
   }
@@ -86,41 +83,40 @@ int main()
   scanf("%d", &N);
   Stack *s = (Stack *)malloc(sizeof(Stack));
   char *cmd = (char *)malloc(sizeof(char) * N);
+  char *result = (char *)malloc(sizeof(char) * N);
   for (int i = 0; i < N; i++)
   {
-    scanf("%s", cmd);
-    if (strcmp(cmd, "push") == 0)
+    scanf("%s", (cmd + i));
+    if (strcmp((cmd + i), "push") == 0)
     {
       scanf("%d", &num);
       push(s, num);
       printf("%d\n", s->top->item);
     }
-    else if (strcmp(cmd, "top") == 0)
+    else if (strcmp((cmd + i), "top") == 0)
     {
       if (is_empty(s))
-        printf("-1");
+        printf("-1\n");
       else
         printf("%d\n", s->top->item);
     }
-    else if (strcmp(cmd, "size") == 0)
+    else if (strcmp((cmd + i), "size") == 0)
     {
       printf("%d\n", size(s));
     }
-    else if (strcmp(cmd, "emtpy") == 0)
+    else if (strcmp((cmd + i), "emtpy") == 0)
     {
       if (is_empty(s))
-        printf("1");
+        printf("1\n");
       else
-        printf("0");
+        printf("0\n");
     }
-    else if (strcmp(cmd, "pop") == 0)
+    else if (strcmp((cmd + i), "pop") == 0)
     {
-      pop(s);
+      printf("%d\n", pop(s));
     }
   }
 
   free(s);
   return 0;
 }
-
-/// 제한이 없는 건가??
