@@ -81,44 +81,48 @@ int size(Stack *s)
 }
 int main()
 {
-  Stack *s = (Stack *)malloc(sizeof(Stack));
-  int N, num;
-  char cmd[10];
+  int *s = (int *)malloc(sizeof(int));
+  int N;
   scanf("%d", &N);
-  init(s);
-
   for (int i = 0; i < N; i++)
-  {
-    scanf("%s", cmd);
-    if (strcmp(cmd, "push") == 0)
-    {
-      scanf("%d", &num);
-      push(s, num);
-      printf("%d\n", s->top->item);
-    }
-    else if (strcmp(cmd, "top") == 0)
-    {
-      if (is_empty(s))
-        printf("-1");
-      else
-        printf("%d\n", s->top->item);
-    }
-    else if (strcmp(cmd, "size") == 0)
-    {
-      printf("%d\n", size(s));
-    }
-    else if (strcmp(cmd, "emtpy") == 0)
-    {
-      if (is_empty(s))
-        printf("1\n");
-      else
-        printf("0\n");
-    }
-    else if (strcmp(cmd, "pop") == 0)
-    {
-      pop(s);
-    }
-  }
+    scanf("%d", s + i);
+  for (int i = 0; i < N; i++)
+    printf("%d\n", *(s + i));
+
+  // init(s);
+
+  // for (int i = 0; i < N; i++)
+  // {
+  //   scanf("%s", cmd);
+  //   if (strcmp(cmd, "push") == 0)
+  //   {
+  //     scanf("%d", &num);
+  //     push(s, num);
+  //     printf("%d\n", s->top->item);
+  //   }
+  //   else if (strcmp(cmd, "top") == 0)
+  //   {
+  //     if (is_empty(s))
+  //       printf("-1");
+  //     else
+  //       printf("%d\n", s->top->item);
+  //   }
+  //   else if (strcmp(cmd, "size") == 0)
+  //   {
+  //     printf("%d\n", size(s));
+  //   }
+  //   else if (strcmp(cmd, "emtpy") == 0)
+  //   {
+  //     if (is_empty(s))
+  //       printf("1\n");
+  //     else
+  //       printf("0\n");
+  //   }
+  //   else if (strcmp(cmd, "pop") == 0)
+  //   {
+  //     pop(s);
+  //   }
+  // }
 
   free(s);
   return 0;
