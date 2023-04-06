@@ -105,7 +105,7 @@ int main()
     }
     else if (strcmp((cmd + i), "emtpy") == 0)
     {
-      if (is_empty(s) == -1)
+      if (is_empty(s))
         printf("1\n");
       else
         printf("0\n");
