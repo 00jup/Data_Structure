@@ -39,7 +39,7 @@ void search(DListNode *head, element data)
 {
 
   DListNode *p;
-  for (p = head->rlink; p != head; p = p->rlink)
+  for (p = head->rlink; p->rlink != head; p = p->rlink)
   {
     if (p->data.num == data.num)
     {
@@ -70,14 +70,15 @@ void sort_dinsert(DListNode *head)
 void display(DListNode *phead)
 {
   printf("=====================================================\n");
-  printf("|번 호| 이 름 | 언어 | 수리 | 영어 |컴퓨터|\n");
+  printf("|번 호| 이 름  | 언어 | 수리 | 영어 |컴퓨터|\n");
   printf("=====================================================\n");
   for (DListNode *p = phead->rlink; p != phead; p = p->rlink)
   {
-    printf("|%3d | %5s | %4d | %4d | %4d | %5d |\n", p->data.num, p->data.name, p->data.kor, p->data.math, p->data.eng, p->data.com);
+    printf("| %2d  | %5s | %3d  | %3d  | %3d  | %3d  |\n", p->data.num, p->data.name, p->data.kor, p->data.math, p->data.eng, p->data.com);
     printf("=====================================================\n");
   }
 }
+
 void free_node(DListNode *phead)
 {
   DListNode *p = phead->rlink, *next;
@@ -131,7 +132,7 @@ int main()
   while (!feof(fp))
   {
     fscanf(fp, "%d %s %d %d %d %d", &dat.num, dat.name, &dat.kor, &dat.math, &dat.eng, &dat.com);
-    printf("%6d %10s %6d %6d %6d %6d\n", dat.num, dat.name, dat.kor, dat.math, dat.eng, dat.com);
+    printf("%6d   %11s %6d %6d %6d %6d\n", dat.num, dat.name, dat.kor, dat.math, dat.eng, dat.com);
     tmp = (DListNode *)malloc(sizeof(DListNode)); // create_node 함수 구현 대신 파일 내에서 생성
     tmp->data = dat;
     dinsert_node(head, tmp); // head에 새로 만든 tmp를 insert
@@ -149,7 +150,7 @@ int main()
     case 1: // 데이터 입력 받아 새로운 노드 추가 후 삽입
       tmp = (DListNode *)malloc(sizeof(DListNode));
       printf("추가할 학생 번호: ");
-      scanf("%d", &dat.num);
+      scanf("%d", &(tmp->data.num)); //&(tmp->data.num)
       printf("이름 : ");
       scanf("%s", dat.name);
       printf("국어 : ");
