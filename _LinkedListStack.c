@@ -36,11 +36,12 @@ void push(Stack *s, element item)
     s->top = temp;
   }
 }
-void pop(Stack *s)
+element pop(Stack *s)
 {
   if (is_empty(s))
   {
     printf("-1\n");
+    exit(1);
   }
   else
   {
@@ -48,7 +49,7 @@ void pop(Stack *s)
     element item = temp->item;
     s->top = s->top->link;
     free(temp); // 이렇게 해도 되는 구나..
-    printf("%d", item);
+    return item;
   }
 }
 element peek(Stack *s)
@@ -81,48 +82,42 @@ int size(Stack *s)
 }
 int main()
 {
-  int *s = (int *)malloc(sizeof(int));
-  int N;
+  int N, num;
   scanf("%d", &N);
+  Stack *s = (Stack *)malloc(sizeof(Stack));
+  char *cmd = (char *)malloc(sizeof(char) * N);
   for (int i = 0; i < N; i++)
-    scanf("%d", s + i);
-  for (int i = 0; i < N; i++)
-    printf("%d\n", *(s + i));
-
-  // init(s);
-
-  // for (int i = 0; i < N; i++)
-  // {
-  //   scanf("%s", cmd);
-  //   if (strcmp(cmd, "push") == 0)
-  //   {
-  //     scanf("%d", &num);
-  //     push(s, num);
-  //     printf("%d\n", s->top->item);
-  //   }
-  //   else if (strcmp(cmd, "top") == 0)
-  //   {
-  //     if (is_empty(s))
-  //       printf("-1");
-  //     else
-  //       printf("%d\n", s->top->item);
-  //   }
-  //   else if (strcmp(cmd, "size") == 0)
-  //   {
-  //     printf("%d\n", size(s));
-  //   }
-  //   else if (strcmp(cmd, "emtpy") == 0)
-  //   {
-  //     if (is_empty(s))
-  //       printf("1\n");
-  //     else
-  //       printf("0\n");
-  //   }
-  //   else if (strcmp(cmd, "pop") == 0)
-  //   {
-  //     pop(s);
-  //   }
-  // }
+  {
+    scanf("%s", cmd);
+    if (strcmp(cmd, "push") == 0)
+    {
+      scanf("%d", &num);
+      push(s, num);
+      printf("%d\n", s->top->item);
+    }
+    else if (strcmp(cmd, "top") == 0)
+    {
+      if (is_empty(s))
+        printf("-1");
+      else
+        printf("%d\n", s->top->item);
+    }
+    else if (strcmp(cmd, "size") == 0)
+    {
+      printf("%d\n", size(s));
+    }
+    else if (strcmp(cmd, "emtpy") == 0)
+    {
+      if (is_empty(s))
+        printf("1");
+      else
+        printf("0");
+    }
+    else if (strcmp(cmd, "pop") == 0)
+    {
+      pop(s);
+    }
+  }
 
   free(s);
   return 0;
