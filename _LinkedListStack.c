@@ -91,32 +91,36 @@ int main()
     {
       scanf("%d", &num);
       push(s, num);
-      printf("%d\n", s->top->item);
+      *(result + i) = s->top->item;
     }
     else if (strcmp((cmd + i), "top") == 0)
     {
       if (is_empty(s))
-        printf("-1\n");
+        *(result + i) = -1;
       else
-        printf("%d\n", s->top->item);
+        *(result + i) = s->top->item;
     }
     else if (strcmp((cmd + i), "size") == 0)
     {
-      printf("%d\n", size(s));
+      *(result + i) = size(s);
     }
     else if (strcmp((cmd + i), "emtpy") == 0)
     {
       if (is_empty(s))
-        printf("1\n");
+        *(result + i) = 1;
       else
-        printf("0\n");
+        *(result + i) = 0;
     }
     else if (strcmp((cmd + i), "pop") == 0)
     {
-      printf("%d\n", pop(s));
+      *(result + i) = pop(s);
     }
   }
-
+  for (int j = 0; j < N; j++)
+  {
+    printf("%d\n", *(result + j));
+  }
   free(s);
+  free(result);
   return 0;
 }
