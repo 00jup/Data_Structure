@@ -36,12 +36,11 @@ void push(Stack *s, element item)
     s->top = temp;
   }
 }
-element pop(Stack *s)
+void pop(Stack *s)
 {
   if (is_empty(s))
   {
     printf("-1\n");
-    exit(1);
   }
   else
   {
@@ -49,7 +48,7 @@ element pop(Stack *s)
     element item = temp->item;
     s->top = s->top->link;
     free(temp); // 이렇게 해도 되는 구나..
-    return item;
+    printf("%d", item);
   }
 }
 element peek(Stack *s)
@@ -111,9 +110,9 @@ int main()
     else if (strcmp(cmd, "emtpy") == 0)
     {
       if (is_empty(s))
-        printf("1");
+        printf("1\n");
       else
-        printf("0");
+        printf("0\n");
     }
     else if (strcmp(cmd, "pop") == 0)
     {
