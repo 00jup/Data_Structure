@@ -39,7 +39,10 @@ void push(Stack *s, element item)
 element pop(Stack *s)
 {
   if (is_empty(s))
-    return -1;
+  {
+    printf("-1\n");
+    exit(1);
+  }
   else
   {
     Node *temp = s->top;
@@ -71,7 +74,11 @@ int size(Stack *s)
 {
 
   int size = 0;
+<<<<<<< HEAD
   for (Node *p = s->top; p != NULL; p = p->link) // 여기서 p->link랑 p != NULL
+=======
+  for (Node *p = s->top; p != NULL; p = p->link)
+>>>>>>> parent of da45603... LinkedListStack completed
   {
     size++;
   }
@@ -83,39 +90,42 @@ int main()
   scanf("%d", &N);
   Stack *s = (Stack *)malloc(sizeof(Stack));
   char *cmd = (char *)malloc(sizeof(char) * N);
+  
   for (int i = 0; i < N; i++)
   {
-    scanf("%s", (cmd + i));
-    if (strcmp((cmd + i), "push") == 0)
+    scanf("%s", cmd);
+    if (strcmp(cmd, "push") == 0)
     {
       scanf("%d", &num);
       push(s, num);
       printf("%d\n", s->top->item);
     }
-    else if (strcmp((cmd + i), "top") == 0)
+    else if (strcmp(cmd, "top") == 0)
     {
       if (is_empty(s))
-        printf("-1\n");
+        printf("-1");
       else
         printf("%d\n", s->top->item);
     }
-    else if (strcmp((cmd + i), "size") == 0)
+    else if (strcmp(cmd, "size") == 0)
     {
       printf("%d\n", size(s));
     }
-    else if (strcmp((cmd + i), "emtpy") == 0)
+    else if (strcmp(cmd, "emtpy") == 0)
     {
       if (is_empty(s))
-        printf("1\n");
+        printf("1");
       else
-        printf("0\n");
+        printf("0");
     }
-    else if (strcmp((cmd + i), "pop") == 0)
+    else if (strcmp(cmd, "pop") == 0)
     {
-      printf("%d\n", pop(s));
+      pop(s);
     }
   }
 
   free(s);
   return 0;
 }
+
+/// 제한이 없는 건가??
