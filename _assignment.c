@@ -16,7 +16,7 @@ typedef struct DListNode
 } DListNode;
 
 void init(DListNode *phead);
-DListNode *dinsert_node(DListNode *before, DListNode *new_node);
+void dinsert_node(DListNode *before, DListNode *new_node);
 void search(DListNode *head, element data);
 void sort_dinsert(DListNode *phead);
 void display(DListNode *phead);
@@ -28,7 +28,7 @@ void init(DListNode *phead)
   phead->llink = phead;
   phead->rlink = phead;
 }
-DListNode *dinsert_node(DListNode *before, DListNode *new_node)
+void dinsert_node(DListNode *before, DListNode *new_node)
 {
   new_node->llink = before; // before->rlink->llink로 해도 되나?
   new_node->rlink = before->rlink;
@@ -43,7 +43,7 @@ void search(DListNode *head, element data)
   {
     if (p->data.num == data.num)
     {
-      printf("%6d %10s %6d %6d %6d %6d\n", p->data.num, p->data.name, p->data.kor, p->data.math, p->data.eng, p->data.com);
+      printf("%6d %20s %6d %6d %6d %6d\n", p->data.num, p->data.name, p->data.kor, p->data.math, p->data.eng, p->data.com);
       return;
     }
   }
@@ -74,9 +74,9 @@ void display(DListNode *phead)
   printf("=====================================================\n");
   for (DListNode *p = phead->rlink; p != phead; p = p->rlink)
   {
-    printf("| %2d  | %5s | %3d  | %3d  | %3d  | %3d  |\n", p->data.num, p->data.name, p->data.kor, p->data.math, p->data.eng, p->data.com);
-    printf("=====================================================\n");
+    printf("| %2d  | %012s | %3d  | %3d  | %3d  | %3d  |\n", p->data.num, p->data.name, p->data.kor, p->data.math, p->data.eng, p->data.com);
   }
+  printf("=====================================================\n");
 }
 
 void free_node(DListNode *phead)
@@ -97,16 +97,12 @@ void removed(DListNode *phead, element data)
   {
     if (p->data.num == data.num)
     {
-      if (removed == phead)
-        return;
-      else
-      {
-        p->rlink->llink = p->llink;
-        p->llink->rlink = p->rlink;
-        free(p);
-        display(phead);
-        return;
-      }
+
+      p->rlink->llink = p->llink;
+      p->llink->rlink = p->rlink;
+      free(p);
+      display(phead);
+      return;
     }
   }
   /// 아무것도 없으면 printf("아무것도 없습니다..")
