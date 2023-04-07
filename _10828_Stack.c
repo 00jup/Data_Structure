@@ -84,6 +84,9 @@ int main()
   int N, num;
   scanf("%d", &N);
   Stack *s = (Stack *)malloc(sizeof(Stack));
+
+  init(s); // 왜 초기화 안 해도 되지?
+
   char *cmd = (char *)malloc(sizeof(char) * N);
   char *result = (char *)malloc(sizeof(char) * N);
 
@@ -100,30 +103,28 @@ int main()
     else if (strcmp(cmd + i, "top") == 0)
     {
       if (is_empty(s))
-        *(result + i) = -1;
+        printf("-1\n");
       else
-        *(result + i) = s->top->item;
+        printf("%d\n", s->top->item);
     }
     else if (strcmp(cmd + i, "size") == 0)
     {
-      *(result + i) = size(s);
+      printf("%d\n", size(s));
     }
     else if (strcmp(cmd + i, "empty") == 0)
     {
       if (is_empty(s))
-        *(result + i) = 1;
+        printf("1\n");
       else
-        *(result + i) = 0;
+        printf("0\n");
     }
     else if (strcmp(cmd + i, "pop") == 0)
     {
-      *(result + i) = pop(s);
+      printf("%d\n", pop(s));
     }
   }
-  for (int i = 0; i < N; i++)
-    printf("%d\n", *(result + i));
+
   free(s);
-  free(result);
   return 0;
 }
 
