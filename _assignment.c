@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <string.h>
 typedef struct student
 {
   int num;
@@ -21,7 +21,7 @@ void search(DListNode *head, element data);
 void sort_dinsert(DListNode *phead);
 void display(DListNode *phead);
 void free_node(DListNode *phead);
-void removed(DListNode *phead, element data);
+void removed(DListNode *phead, DListNode *removed);
 
 void init(DListNode *phead)
 {
@@ -74,11 +74,10 @@ void display(DListNode *phead)
   printf("=====================================================\n");
   for (DListNode *p = phead->rlink; p != phead; p = p->rlink)
   {
-    printf("| %2d  | %012s | %3d  | %3d  | %3d  | %3d  |\n", p->data.num, p->data.name, p->data.kor, p->data.math, p->data.eng, p->data.com);
+    printf("| %2d  | %5s | %3d  | %3d  | %3d  | %3d  |\n", p->data.num, p->data.name, p->data.kor, p->data.math, p->data.eng, p->data.com);
   }
   printf("=====================================================\n");
 }
-
 void free_node(DListNode *phead)
 {
   DListNode *p = phead->rlink, *next;
@@ -88,16 +87,16 @@ void free_node(DListNode *phead)
     free(p);
     p = p->rlink;
   }
+  free(phead);
 }
-void removed(DListNode *phead, element data)
+void removed(DListNode *phead, DListNode *removed)
 {
   /// 탐색 --> 발견하면 free;
   DListNode *p;
   for (p = phead->rlink; p != phead; p = p->rlink)
   {
-    if (p->data.num == data.num)
+    if (strcmp(p->data.name, removed->data.name) == 0)
     {
-
       p->rlink->llink = p->llink;
       p->llink->rlink = p->rlink;
       free(p);
@@ -105,6 +104,7 @@ void removed(DListNode *phead, element data)
       return;
     }
   }
+
   /// 아무것도 없으면 printf("아무것도 없습니다..")
 }
 
@@ -128,7 +128,7 @@ int main()
   while (!feof(fp))
   {
     fscanf(fp, "%d %s %d %d %d %d", &dat.num, dat.name, &dat.kor, &dat.math, &dat.eng, &dat.com);
-    printf("%6d   %11s %6d %6d %6d %6d\n", dat.num, dat.name, dat.kor, dat.math, dat.eng, dat.com);
+    printf("%6d   %10s %6d %6d %6d %6d\n", dat.num, dat.name, dat.kor, dat.math, dat.eng, dat.com);
     tmp = (DListNode *)malloc(sizeof(DListNode)); // create_node 함수 구현 대신 파일 내에서 생성
     tmp->data = dat;
     dinsert_node(head, tmp); // head에 새로 만든 tmp를 insert
@@ -172,9 +172,9 @@ int main()
       break;
     case 4:
       delete_tmp = (DListNode *)malloc(sizeof(DListNode));
-      printf("\n삭제할 인원 번호 입력\n");
-      scanf("%d", &dat.num);
-      removed(head, dat);
+      printf("\n삭제할 인원 이름 입력\n");
+      scanf("%s", delete_tmp->data.name);
+      removed(head, delete_tmp);
       break;
 
     default:
