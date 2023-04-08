@@ -85,46 +85,46 @@ int main()
   scanf("%d", &N);
   Stack *s = (Stack *)malloc(sizeof(Stack));
   printf("%p", s->top);
-  // // init(s); // 왜 초기화 안 해도 되지?
+  // init(s); // 왜 초기화 안 해도 되지?
 
-  // char *cmd = (char *)malloc(sizeof(char) * N);
-  // char *result = (char *)malloc(sizeof(char) * N);
+  char *cmd = (char *)malloc(sizeof(char) * N);
+  char *result = (char *)malloc(sizeof(char) * N);
 
-  // for (int i = 0; i < N; i++)
-  // {
-  //   scanf("%s", cmd + i);
-  //   if (strcmp(cmd + i, "push") == 0)
-  //   {
-  //     scanf("%d", &num);
-  //     push(s, num);
-  //     i--;
-  //     N--;
-  //   }
-  //   else if (strcmp(cmd + i, "top") == 0)
-  //   {
-  //     if (is_empty(s))
-  //       printf("-1\n");
-  //     else
-  //       printf("%d\n", s->top->item);
-  //   }
-  //   else if (strcmp(cmd + i, "size") == 0)
-  //   {
-  //     printf("%d\n", size(s));
-  //   }
-  //   else if (strcmp(cmd + i, "empty") == 0)
-  //   {
-  //     if (is_empty(s))
-  //       printf("1\n");
-  //     else
-  //       printf("0\n");
-  //   }
-  //   else if (strcmp(cmd + i, "pop") == 0)
-  //   {
-  //     printf("%d\n", pop(s));
-  //   }
-  // }
+  for (int i = 0; i < N; i++)
+  {
+    scanf("%s", cmd + i);
+    if (strcmp(cmd + i, "push") == 0)
+    {
+      scanf("%d", &num);
+      push(s, num);
+      i--;
+      N--;
+    }
+    else if (strcmp(cmd + i, "top") == 0)
+    {
+      if (is_empty(s))
+        printf("-1\n");
+      else
+        printf("%d\n", s->top->item);
+    }
+    else if (strcmp(cmd + i, "size") == 0)
+    {
+      printf("%d\n", size(s));
+    }
+    else if (strcmp(cmd + i, "empty") == 0)
+    {
+      if (is_empty(s))
+        printf("1\n");
+      else
+        printf("0\n");
+    }
+    else if (strcmp(cmd + i, "pop") == 0)
+    {
+      printf("%d\n", pop(s));
+    }
+  }
 
-  // free(s);
+  free(s);
   return 0;
 }
 

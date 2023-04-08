@@ -30,7 +30,7 @@ void init(DListNode *phead)
 }
 void dinsert_node(DListNode *before, DListNode *new_node)
 {
-  new_node->llink = before; // before->rlink->llink로 해도 되나?
+  new_node->llink = before->rlink->llink; // 로 해도 되나?
   new_node->rlink = before->rlink;
   before->rlink->llink = new_node;
   before->rlink = new_node;
@@ -112,7 +112,7 @@ int main()
 {
   FILE *fp;
   DListNode *head = (DListNode *)malloc(sizeof(DListNode)); // 헤드 노드 생성(데이터 필드는 empty)
-  DListNode *tmp, *delete_tmp;                              // 임시로 데이터를 입력받는 노드
+  DListNode *tmp, *delete_tmp, *tm;                         // 임시로 데이터를 입력받는 노드
   element dat;                                              // 데이터 임시로 입력 받는 구조체
   int flag;                                                 // 입력받는 메뉴
   // 연결 리스트 초기화
@@ -144,9 +144,9 @@ int main()
       exit(1);
       break;
     case 1: // 데이터 입력 받아 새로운 노드 추가 후 삽입
-      tmp = (DListNode *)malloc(sizeof(DListNode));
+      tm = (DListNode *)malloc(sizeof(DListNode));
       printf("추가할 학생 번호: ");
-      scanf("%d", &(tmp->data.num)); //&(tmp->data.num)
+      scanf("%d", &dat.num); //&(tm->data.num)
       printf("이름 : ");
       scanf("%s", dat.name);
       printf("국어 : ");
@@ -157,8 +157,8 @@ int main()
       scanf("%d", &dat.eng);
       printf("컴퓨터 : ");
       scanf("%d", &dat.com);
-      tmp->data = dat;         // 새로운 노드의 데이터 필드에 입력 받은 dat구조체를 대입
-      dinsert_node(head, tmp); // 노드 맨 앞에 삽입
+      tm->data = dat;         // 새로운 노드의 데이터 필드에 입력 받은 dat구조체를 대입
+      dinsert_node(head, tm); // 노드 맨 앞에 삽입
       break;
     case 2: // 학생 번호 입력 받아 리스트에서 탐색 후 출력
       printf("검색할 학생 번호 : ");
@@ -182,5 +182,7 @@ int main()
     }
   }
   free_node(head);
+  free(delete_tmp);
+  free(tm);
   fclose(fp);
 }
