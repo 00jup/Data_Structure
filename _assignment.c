@@ -157,8 +157,9 @@ int main()
       scanf("%d", &dat.eng);
       printf("컴퓨터 : ");
       scanf("%d", &dat.com);
-      tm->data = dat;         // 새로운 노드의 데이터 필드에 입력 받은 dat구조체를 대입
-      dinsert_node(head, tm); // 노드 맨 앞에 삽입
+      tm->data = dat; // 새로운 노드의 데이터 필드에 입력 받은 dat구조체를 대입
+      dinsert_node(head, tm);
+      display(head); // 노드 맨 앞에 삽입
       break;
     case 2: // 학생 번호 입력 받아 리스트에서 탐색 후 출력
       printf("검색할 학생 번호 : ");
@@ -175,6 +176,7 @@ int main()
       printf("\n삭제할 인원 이름 입력\n");
       scanf("%s", delete_tmp->data.name);
       removed(head, delete_tmp);
+      display(head);
       break;
 
     default:
