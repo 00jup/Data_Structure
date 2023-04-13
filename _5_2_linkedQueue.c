@@ -84,7 +84,17 @@ void search(LinkedQueueType *q, element data)
       printf("없습니다.\n");
   }
 }
-
+int search(LinkedQueueType *q, element data)
+{
+  QueueNode *p;
+  int count = 1;
+  for (p = q->front; p != NULL; p = p->link)
+  {
+    if (p->data == data)
+      return count;
+    count++;
+  }
+}
 int main()
 {
   LinkedQueueType *newNode;
