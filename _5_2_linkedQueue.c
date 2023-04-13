@@ -1,3 +1,5 @@
+/* prettier-ignore */
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -75,10 +77,9 @@ int search(LinkedQueueType *q, element data)
   int count = 1;
   for (p = q->front; p != NULL; p = p->link)
   {
-    count++;
     if (p->data == data)
-      break;
-    return count;
+      return count;
+    count++;
   }
   return 1;
 }
@@ -89,6 +90,7 @@ int main()
   element data;
   int index;
   init(newNode);
+
   enqueue(newNode, 10);
   print_queue(newNode);
   enqueue(newNode, 20);
