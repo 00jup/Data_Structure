@@ -77,9 +77,11 @@ void search(LinkedQueueType *q, element data)
   int count = 1;
   for (p = q->front; p != NULL; p = p->link)
   {
-    count++;
     if (p->data == data)
       printf("%d번째에 있습니다.\n", count);
+    count++;
+    if (p->link == NULL)
+      printf("없습니다.\n");
   }
 }
 
