@@ -100,7 +100,6 @@ void removed(DListNode *phead, DListNode *removed)
       p->rlink->llink = p->llink;
       p->llink->rlink = p->rlink;
       free(p);
-      display(phead);
       return;
     }
   }
