@@ -71,17 +71,16 @@ void print_queue(LinkedQueueType *q)
     printf("%d ->", p->data);
   printf("\n");
 }
-int search(LinkedQueueType *q, element data)
+void search(LinkedQueueType *q, element data)
 {
   QueueNode *p;
   int count = 1;
   for (p = q->front; p != NULL; p = p->link)
   {
-    if (p->data == data)
-      return count;
     count++;
+    if (p->data == data)
+      printf("%d번째에 있습니다.\n", count);
   }
-  return 1;
 }
 
 int main()
@@ -99,11 +98,8 @@ int main()
   print_queue(newNode);
   printf("찾고 싶은 데이터\n");
   scanf("%d", &data);
-  index = search(newNode, data);
-  if (index != 1)
-    printf("찾는 데이터는 %d번째에 있습니다.\n", index);
-  else
-    printf("찾는 데이터가 없습니다.\n");
+  search(newNode, data);
+
   dequeue(newNode);
   print_queue(newNode);
   dequeue(newNode);
