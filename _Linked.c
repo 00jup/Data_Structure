@@ -1,5 +1,3 @@
-/* prettier-ignore */
-
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -78,10 +76,41 @@ void search(LinkedQueueType *q, element data)
   for (p = q->front; p != NULL; p = p->link)
   {
     if (p->data == data)
+    {
       printf("%d번째에 있습니다.\n", count);
+      break;
+    }
     count++;
+
     if (p->link == NULL)
       printf("없습니다.\n");
+  }
+}
+
+void cal_patience(LinkedQueueType *q)
+{
+  QueueNode *p; //
+  // QueueNode *temp = (QueueNode *)malloc(sizeof(QueueNode));
+
+  int data;
+  while (1)
+  {
+    for (p = q->front; p != NULL; p = p->link)
+    {
+      p->data = (p->data) - 10;
+    }
+    // for (p = q->front; p != NULL; p = p->link)
+    // {
+    //   if (q->front < 0)
+    //   {
+    //     dequeue(q);
+    //   }
+    // }
+    if (is_empty(q))
+    {
+      printf("stop\n");
+      break;
+    }
   }
 }
 // int search(LinkedQueueType *q, element data)
@@ -114,9 +143,12 @@ int main()
   print_queue(newNode);
   enqueue(newNode, 55);
   print_queue(newNode);
+
   // printf("찾고 싶은 데이터\n");
   // scanf("%d", &data);
   // search(newNode, data);
+  // int size = get_size(newNode);
+  cal_patience(newNode);
 
   dequeue(newNode);
   print_queue(newNode);
