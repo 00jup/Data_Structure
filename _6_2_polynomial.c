@@ -3,9 +3,9 @@
 #define MAX_DEGREE 101
 struct
 {
-  int expon;
   float coef;
-} terms[MAX_DEGREE] = {{8, 3}, {7, 1}, {5, 0}, {2, 3}, {10, 2}, {0, 1}};
+  int expon;
+} terms[MAX_DEGREE] = {{8, 3}, {7, 1}, {5, 0}, {2, 3}, {10, 2}, {3, 1}};
 int avail = 6;
 char compare(int i, int j)
 {
@@ -49,17 +49,25 @@ poly_add2(int As, int Ae, int Bs, int Be, int *Cs, int *Ce)
       Bs++;
       break;
     }
+  printf("%d %d", As, Bs);
   for (; As <= Ae; As++)
+  {
     attach(terms[As].coef, terms[As].expon);
+    printf("attach terms[As].coef: %.2f, terms[As].expon: %d\n", terms[As].coef, terms[As].expon);
+  }
   for (; Bs <= Be; Bs++)
+  {
     attach(terms[Bs].coef, terms[Bs].expon);
+    printf("attach terms[Bs].coef: %.2f, terms[Bs].expon: %d\n", terms[Bs].coef, terms[Bs].expon);
+  }
   *Ce = avail - 1;
 }
 int main()
 {
   int As = 0, Ae = 2, Bs = 3, Be = 5, Cs, Ce;
   poly_add2(As, Ae, Bs, Be, &Cs, &Ce);
-  for (int i = Cs; i >= Ce; i--)
+  printf("%d %d\n", Cs, Ce);
+  for (int i = Cs; i <= Ce; i++)
     printf("%.2fx^%d + ", terms[i].coef, terms[i].expon);
-  printf("\b\b  ");
+  printf("\n");
 }
