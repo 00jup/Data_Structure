@@ -92,20 +92,20 @@ void cal_patience(LinkedQueueType *q)
   QueueNode *p; //
   // QueueNode *temp = (QueueNode *)malloc(sizeof(QueueNode));
 
-  int data;
+  // int data;
   while (1)
   {
     for (p = q->front; p != NULL; p = p->link)
     {
       p->data = (p->data) - 10;
     }
-    // for (p = q->front; p != NULL; p = p->link)
-    // {
-    //   if (q->front < 0)
-    //   {
-    //     dequeue(q);
-    //   }
-    // }
+    for (p = q->front; p != NULL; p = p->link)
+    {
+      if (q->front < 0)
+      {
+        dequeue(q);
+      }
+    }
     if (is_empty(q))
     {
       printf("stop\n");
@@ -126,36 +126,36 @@ void cal_patience(LinkedQueueType *q)
 // }
 int main()
 {
-  LinkedQueueType *newNode;
+  LinkedQueueType *newHeader;
   element data;
   int index;
-  init(newNode);
+  init(newHeader);
 
-  enqueue(newNode, 25);
-  print_queue(newNode);
-  enqueue(newNode, 5);
-  print_queue(newNode);
-  enqueue(newNode, 20);
-  print_queue(newNode);
-  enqueue(newNode, 45);
-  print_queue(newNode);
-  enqueue(newNode, 15);
-  print_queue(newNode);
-  enqueue(newNode, 55);
-  print_queue(newNode);
+  enqueue(newHeader, 25);
+  print_queue(newHeader);
+  enqueue(newHeader, 5);
+  print_queue(newHeader);
+  enqueue(newHeader, 20);
+  print_queue(newHeader);
+  enqueue(newHeader, 45);
+  print_queue(newHeader);
+  enqueue(newHeader, 15);
+  print_queue(newHeader);
+  enqueue(newHeader, 55);
+  print_queue(newHeader);
 
   // printf("찾고 싶은 데이터\n");
   // scanf("%d", &data);
-  // search(newNode, data);
-  // int size = get_size(newNode);
-  cal_patience(newNode);
+  // search(newHeader, data);
+  // int size = get_size(newHeader);
+  cal_patience(newHeader);
 
-  dequeue(newNode);
-  print_queue(newNode);
-  dequeue(newNode);
-  print_queue(newNode);
-  dequeue(newNode);
-  print_queue(newNode);
+  dequeue(newHeader);
+  print_queue(newHeader);
+  dequeue(newHeader);
+  print_queue(newHeader);
+  dequeue(newHeader);
+  print_queue(newHeader);
 
   return 0;
 }
