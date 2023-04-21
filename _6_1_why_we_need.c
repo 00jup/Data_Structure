@@ -27,13 +27,16 @@ int main()
   int A, B;
   A = 2;
   B = 1;
-  if(B){
+  if (B)
+  {
     printf("B is true\n");
   }
-  if(B!=0){
+  if (B != 0)
+  {
     printf("B is true\n");
   }
-  if(B==1){
+  if (B == 1)
+  {
     printf("B is true\n");
   }
 }

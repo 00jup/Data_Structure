@@ -1,5 +1,5 @@
 #include <stdio.h>
-void show_arr(int *(ptr)[4], int a);
+void show_arr(int (*ptr)[4], int a);
 
 int main()
 {
@@ -9,7 +9,7 @@ int main()
   show_arr(arr2, 3);
   return 0;
 }
-void show_arr(int *(ptr)[4], int a)
+void show_arr(int (*ptr)[4], int a)
 {
   int i, j;
   printf("----Start Print----\n");

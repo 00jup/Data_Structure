@@ -7,5 +7,5 @@ int main()
   // int *p = &A;
   int *p = NULL;
   p = 100;
-  printf("%d", p);
+  printf("%d", *p);
 }

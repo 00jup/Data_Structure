@@ -14,9 +14,9 @@ void main()
   }
   // Valid. Size of the array is taken as the number of elements
   // in the initializer list (5)
-  int arr[] = {1, 2, 3, 4, 5};
+  // int arr[] = {1, 2, 3, 4, 5};
 
-  // Also valid. But here, size of a is 3
-  int a[] = {1, 2, 3};
+  // // Also valid. But here, size of a is 3
+  // int a[] = {1, 2, 3};
   free(arr); // 동적할당 해제
 }

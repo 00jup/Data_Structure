@@ -5,7 +5,7 @@ int add(int a, int b)
   return a + b;
 }
 
-int q(int (*get)(int, int))
+int q(int (*get)(int))
 {
   return get;
 }

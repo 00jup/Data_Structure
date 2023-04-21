@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 typedef struct Data
 {
@@ -6,17 +7,20 @@ typedef struct Data
   int Data2;
 } A_data;
 
-struct calcul *add1(A_data *st);
+A_data *add1(A_data *st);
 
 int main()
 {
 
-  A_data data1 = {11, 12};
-  A_data data2;
-  data2 = *(add1(&data1));
+  A_data *data1 = (A_data *)malloc(sizeof(A_data));
+  data1->Data1 = 11;
+  data1->Data2 = 12;
+  A_data *data2;
+  data2 = (add1(data1));
+  printf("%d %d", data2->Data1, data2->Data2);
 }
 
-struct calcul *add1(A_data *st)
+A_data *add1(A_data *st)
 {
   st->Data1++;
   st->Data2++;

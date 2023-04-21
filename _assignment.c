@@ -84,7 +84,7 @@ void free_node(DListNode *phead)
   while (p != phead)
   {
     next = p;
-    free(p);
+    free(next);
     p = p->rlink;
   }
   free(phead);
@@ -140,6 +140,7 @@ int main()
     switch (flag)
     {
     case 0: // 0인 경우 종료
+      free_node(head);
       exit(1);
       break;
     case 1: // 데이터 입력 받아 새로운 노드 추가 후 삽입
@@ -183,7 +184,11 @@ int main()
     }
   }
   free_node(head);
+  printf("프로그램 종료\n");
   free(delete_tmp);
+  printf("프로그램 종료\n");
   free(tm);
+  printf("프로그램 종료\n");
   fclose(fp);
+  printf("프로그램 종료\n");
 }
