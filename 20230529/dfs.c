@@ -62,7 +62,7 @@ void load_graph(char *filename)
 
   init_graph();
   fscanf(fp, "%d", &n);
-  
+
   for (i = 0; i < n; i++)
   {
     fscanf(fp, "%s", str);
