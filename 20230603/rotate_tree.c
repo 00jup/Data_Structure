@@ -107,6 +107,7 @@ BTreeNode *Rebalance(BTreeNode **pRoot)
         else
             *pRoot = RotateLR(*pRoot);
     }
+    
     if (hDiff < -1)
     {
         if (GetHeightDiff(GetRightSubTree(*pRoot)) < 0)
@@ -114,6 +115,14 @@ BTreeNode *Rebalance(BTreeNode **pRoot)
         else
             *pRoot = RotateRL(*pRoot);
     }
+}
+int GetData(BTreeNode *bt)
+{
+    return bt->data;
+}
+void SetData(BTreeNode *bt, int data)
+{
+    bt->data = data;
 }
 
 BTreeNode *BSTInsert(BTreeNode **pRoot, BSTData data)
